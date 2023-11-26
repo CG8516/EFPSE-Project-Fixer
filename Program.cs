@@ -299,6 +299,7 @@ namespace EFPSEProjectFixer
                             if ((mod == 13 || mod == 35 || mod == 36 || mod == 37) && (tileData[index] == 0))
                             {
                                 Console.WriteLine("Door at {0},{1} is placed on an empty tile!", x, y);
+                                foundProblem = true;
                                 modifierData[index] = 0;
                                 mapModified = true;
                             }
@@ -313,12 +314,12 @@ namespace EFPSEProjectFixer
                 {
                     try
                     {
-
                         File.WriteAllBytes(path + "\\Maps\\" + mapName, mapBytes);
                     }
                     catch
                     {
                         Console.WriteLine("Failed to write modified map file: " + mapName);
+                        errorOcurred = true;
                         continue;
                     }
                 }
